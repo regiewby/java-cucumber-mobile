@@ -33,10 +33,10 @@ public class CommonStep {
         myAccountPage.tapButtonLogin();
     }
 
-    @When("user login with valid credential")
-    public void user_login_with_valid_credential() {
+    @When("user login with username {string} and password {string}")
+    public void userLoginWithUsernameAndPassword(String email, String password) {
         LoginPage loginPage = new LoginPage(androidDriver);
-        loginPage.userLogin("regie@gmail.com","password");
+        loginPage.userLogin(email,password);
     }
 
     @Then("user should be able to login")
