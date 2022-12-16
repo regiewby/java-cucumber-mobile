@@ -1,6 +1,11 @@
 package app.bersama.steps;
 
+import app.bersama.DriverManager;
+import app.bersama.pages.MyAccountPage;
+import app.bersama.pages.NavigationSectionPage;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 /**
  * @author regiewby on 16/12/22
@@ -8,19 +13,15 @@ import io.cucumber.java.en.Given;
  */
 public class CommonStep {
 
-    @Given("launch mobile driver")
-    public void launchMobileDriver() {
+    @Given("user navigate to login page")
+    public void user_navigate_to_login_page() {
+        NavigationSectionPage navigationSectionPage = new NavigationSectionPage(
+                DriverManager.getInstance().getDriver());
 
+        MyAccountPage myAccountPage = new MyAccountPage(
+                DriverManager.getInstance().getDriver());
+
+        navigationSectionPage.tapNavigationAccount();
+        myAccountPage.tapButtonLogin();
     }
-
-    @When("user entry valid credential")
-    public void user_entry_valid_credential() {
-
-    }
-
-    @Then("user should be able to login")
-    public void user_should_be_able_to_login() {
-
-    }
-
 }

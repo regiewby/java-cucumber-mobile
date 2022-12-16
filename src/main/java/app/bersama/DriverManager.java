@@ -1,6 +1,8 @@
 package app.bersama;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebDriver;
 
 /**
  * @author regiewby on 16/12/22
@@ -8,9 +10,10 @@ import io.appium.java_client.AppiumDriver;
  */
 public class DriverManager {
 
+    // implements design pattern singleton and thread local
     private static final DriverManager instance = new DriverManager();
 
-    ThreadLocal<AppiumDriver> mobileDriver = new ThreadLocal<>();
+    ThreadLocal<AndroidDriver> driver = new ThreadLocal<>();
 
     private DriverManager() {
     }
@@ -19,15 +22,15 @@ public class DriverManager {
         return instance;
     }
 
-    public AppiumDriver getDriver() {
-        return mobileDriver.get();
+    public AndroidDriver getDriver() {
+        return driver.get();
     }
 
-    public void setDriver(AppiumDriver appiumDriver) {
-        mobileDriver.set(appiumDriver);
+    public void setDriver(AndroidDriver androidDriver) {
+        driver.set(androidDriver);
     }
 
     public void closeDriver() {
-        mobileDriver.remove();
+        driver.remove();
     }
 }
