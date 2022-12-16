@@ -8,6 +8,7 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -25,12 +26,13 @@ public class MobileFactory {
         DesiredCapabilities dc = new DesiredCapabilities();
 
         URL url = new URL("http://localhost:4723/wd/hub");
+        String absPathApk = System.getProperty("user.dir") + File.separator + "apk/app-second-hand.apk";
 
         if (platformType.equalsIgnoreCase("ANDROID")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
             dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"11");
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID.toString());
-            dc.setCapability(MobileCapabilityType.APP, "/Users/regiewby/git.server/java-cucumber-mobile/apk/app-second-hand.apk");
+            dc.setCapability(MobileCapabilityType.APP, absPathApk);
             dc.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
 
         } else if (platformType.equalsIgnoreCase("IOS")) {
