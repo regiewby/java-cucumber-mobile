@@ -30,10 +30,10 @@ public class MobileFactory {
 
         if (platformType.equalsIgnoreCase("ANDROID")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
-            dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"11");
+            dc.setCapability(MobileCapabilityType.PLATFORM_VERSION,"9");
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID.toString());
-            dc.setCapability(MobileCapabilityType.APP, absPathApk);
-            dc.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
+            dc.setCapability(MobileCapabilityType.APP, "C:\\\\Users\\\\user365student\\\\Desktop\\\\app-release.apk");
+            dc.setCapability(MobileCapabilityType.DEVICE_NAME, "Redmi 7A");
 
         } else if (platformType.equalsIgnoreCase("IOS")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
