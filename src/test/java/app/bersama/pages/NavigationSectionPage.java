@@ -22,7 +22,7 @@ public class NavigationSectionPage {
 
     public NavigationSectionPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
     }
 
