@@ -24,9 +24,11 @@ public class MyAccountPage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         PageFactory.initElements(driver, this);
     }
-
+    //asa@gmail.com
+    //123123
     @FindBy(id = "id.binar.fp.secondhand:id/btn_login")
     private WebElement button_login;
+
 
     public void tapButtonLogin() {
         WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
