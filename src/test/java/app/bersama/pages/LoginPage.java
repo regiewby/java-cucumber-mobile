@@ -37,6 +37,15 @@ public class LoginPage {
     @FindBy (id = "id.binar.fp.secondhand:id/tv_email")
     private WebElement assertLogin;
 
+    @FindBy (id = "id.binar.fp.secondhand:id/tv_register")
+    private WebElement navLinkDaftar;
+
+    public void tapNavLinkRegister(){
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOf(navLinkDaftar));
+        navLinkDaftar.click();
+    }
+
     public void modalLogin(String email, String password) {
         WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(txtEmail));

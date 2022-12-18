@@ -19,19 +19,23 @@ public class CommonStep {
         NavigationSectionPage navigationSectionPage = new NavigationSectionPage(
                 DriverManager.getInstance().getDriver());
 
+        navigationSectionPage.tapNavigationAccount();
+
         MyAccountPage myAccountPage = new MyAccountPage(
                 DriverManager.getInstance().getDriver());
 
-        navigationSectionPage.tapNavigationAccount();
         myAccountPage.tapButtonLogin();
     }
 
     @When("user login with valid email {string} and password {string}")
     public void user_login_with_valid_email_and_password(String email, String password) {
+
         LoginPage loginPage = new LoginPage(
                 DriverManager.getInstance().getDriver());
 
         loginPage.modalLogin(email, password);
+
+
     }
 
     @Then("user should be able to login and verify email valid with email {string}")

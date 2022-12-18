@@ -29,7 +29,6 @@ public class MyAccountPage {
     @FindBy(id = "id.binar.fp.secondhand:id/btn_login")
     private WebElement button_login;
 
-
     public void tapButtonLogin() {
         WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(button_login));
