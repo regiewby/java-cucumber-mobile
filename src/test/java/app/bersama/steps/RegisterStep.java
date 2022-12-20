@@ -45,4 +45,16 @@ public class RegisterStep {
         MyAccountPage myAccountPage = new MyAccountPage(DriverManager.getInstance().getDriver());
         myAccountPage.verifyLogin(name,phoneNo,email);
     }
+
+    @When("user tap register button")
+    public void userTapRegisterButton() {
+        RegisterPage registerPage = new RegisterPage(DriverManager.getInstance().getDriver());
+        registerPage.tapButtonRegister();
+    }
+
+    @Then("message error should be appear with value {string}")
+    public void messageErrorShouldBeAppearWithValue(String message) {
+        RegisterPage registerPage = new RegisterPage(DriverManager.getInstance().getDriver());
+        registerPage.verifyErrorMessageWithValue(message);
+    }
 }

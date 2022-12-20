@@ -33,6 +33,7 @@ public class MobileFactory {
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID.toString());
             dc.setCapability(MobileCapabilityType.APP, "C:\\\\Users\\\\user365student\\\\Desktop\\\\app-release.apk");
             dc.setCapability(MobileCapabilityType.DEVICE_NAME, "Redmi 7A");
+            dc.setCapability(MobileCapabilityType.NO_RESET, false);
 
         } else if (platformType.equalsIgnoreCase("IOS")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);

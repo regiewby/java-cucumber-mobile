@@ -6,6 +6,7 @@ import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -40,6 +41,9 @@ public class RegisterPage {
     @FindBy(id = "id.binar.fp.secondhand:id/btn_register")
     private WebElement button_register;
 
+    @FindBy(xpath = "//android.widget.TextView[@resource-id='id.binar.fp.secondhand:id/textinput_error']")
+    private WebElement label_errorMessage;
+
     public void enterData(String Name, String Email, String Password, String PhoneNo, String City, String Address){
         entry_name.sendKeys(Name);
         entry_email.sendKeys(Email);
@@ -50,6 +54,12 @@ public class RegisterPage {
         entry_address.sendKeys(Address);
     }
     public void tapButtonRegister(){
+        Keyword.swipeByElement(entry_city,entry_name);
         button_register.click();
     }
+    public void verifyErrorMessageWithValue(String message){
+        Assert.assertTrue(label_errorMessage.isDisplayed());
+        Assert.assertEquals(label_errorMessage.getText(),message);
+    }
+
 }

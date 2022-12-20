@@ -13,7 +13,7 @@ import java.net.MalformedURLException;
  * @project java-cucumber-mobile
  */
 
-@CucumberOptions(features = "src/test/java/app/bersama/features/Register.feature",
+@CucumberOptions(features = "src/test/java/app/bersama/features/Register.feature:11",
         glue = "app.bersama.steps",
         plugin = {
                 "pretty",
@@ -24,7 +24,7 @@ import java.net.MalformedURLException;
 public class MobileTestRunner extends AbstractTestNGCucumberTests {
 
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
