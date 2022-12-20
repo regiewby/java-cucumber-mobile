@@ -37,12 +37,11 @@ public class CommonStep {
 
 
     }
-
-    @Then("user should be able to login and verify email valid with email {string}")
-    public void user_should_be_able_to_login_and_verify_email_valid_with_email(String validation) {
+    @Then("user should be able to verify to my account page")
+    public void user_should_be_able_to_verify_to_my_account_page() {
         LoginPage loginPage = new LoginPage(
                 DriverManager.getInstance().getDriver());
 
-        loginPage.assertLogin(validation);
+        loginPage.assertLogin();
     }
 }

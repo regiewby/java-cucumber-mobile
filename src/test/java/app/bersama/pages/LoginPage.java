@@ -34,7 +34,7 @@ public class LoginPage {
     @FindBy (id = "id.binar.fp.secondhand:id/btn_login")
     private WebElement btnLogin;
 
-    @FindBy (id = "id.binar.fp.secondhand:id/tv_email")
+    @FindBy (id = "id.binar.fp.secondhand:id/iv_profile")
     private WebElement assertLogin;
 
     @FindBy (id = "id.binar.fp.secondhand:id/tv_register")
@@ -58,10 +58,10 @@ public class LoginPage {
         btnLogin.click();
     }
 
-    public void assertLogin(String validationEmail){
+    public void assertLogin(){
         WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.visibilityOf(assertLogin));
-        Assert.assertEquals(validationEmail, assertLogin.getText());
+        assertLogin.isDisplayed();
     }
 
 }
