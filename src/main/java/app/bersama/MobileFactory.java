@@ -1,7 +1,5 @@
 package app.bersama;
-
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.Platform;
@@ -19,9 +17,9 @@ import java.net.URL;
 public class MobileFactory {
 
 
-    private AppiumDriver appiumDriver;
+    private AndroidDriver androidDriver;
 
-    public AppiumDriver launchMobile(String platformType) throws MalformedURLException {
+    public AndroidDriver launchMobile(String platformType) throws MalformedURLException {
 
         DesiredCapabilities dc = new DesiredCapabilities();
 
@@ -43,8 +41,8 @@ public class MobileFactory {
             dc.setCapability(MobileCapabilityType.UDID, "");
             dc.setCapability(MobileCapabilityType.NO_RESET, false);
         }
-        appiumDriver = new AppiumDriver<MobileElement>(url,dc);
+        androidDriver = new AndroidDriver(url,dc);
 
-        return appiumDriver;
+        return androidDriver;
     }
 }
