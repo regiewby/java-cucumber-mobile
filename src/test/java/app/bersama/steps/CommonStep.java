@@ -1,6 +1,7 @@
 package app.bersama.steps;
 
 import app.bersama.DriverManager;
+import app.bersama.pages.LoginPage;
 import app.bersama.pages.MyAccountPage;
 import app.bersama.pages.NavigationSectionPage;
 import io.cucumber.java.en.Given;
@@ -23,5 +24,18 @@ public class CommonStep {
 
         navigationSectionPage.tapNavigationAccount();
         myAccountPage.tapButtonLogin();
+    }
+
+    @When("user login with valid credential")
+    public void userLoginWithValidCredential() {
+        LoginPage loginPage = new LoginPage(DriverManager.getInstance().getDriver());
+        loginPage.enterCredential("haryutamakurniawan@gmail.com","Qwerty123");
+        loginPage.tapButtonLogin();
+    }
+
+    @Then("user should be able to login")
+    public void user_should_be_able_to_login() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 }
