@@ -21,6 +21,7 @@ public class Keyword {
         int startY = startElement.getLocation().getY() + (startElement.getSize().getHeight() / 2);
         int endX = endElement.getLocation().getX() + (endElement.getSize().getWidth() / 2);
         int endY = endElement.getLocation().getY() + (endElement.getSize().getHeight() / 2);
+
         new TouchAction(DriverManager.getInstance().getDriver())
                 .press(PointOption.point(startX, startY))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(3000)))
@@ -29,6 +30,7 @@ public class Keyword {
     }
 
     public static void swipeScreen(Direction dir) {
+
         final int ANIMATION_TIME = 200; // ms
         final int PRESS_TIME = 200; // ms
         int edgeBorder = 10; // better avoid edges
@@ -41,22 +43,17 @@ public class Keyword {
         // init start point = center of screen
         pointOptionStart = PointOption.point(dims.width / 2, dims.height / 2);
 
-        switch (dir) {
-            case DOWN: // center of footer
-                pointOptionEnd = PointOption.point(dims.width / 2, dims.height - edgeBorder);
-                break;
-            case UP: // center of header
-                pointOptionEnd = PointOption.point(dims.width / 2, edgeBorder);
-                break;
-            case LEFT: // center of left side
-                pointOptionEnd = PointOption.point(edgeBorder, dims.height / 2);
-                break;
-            case RIGHT: // center of right side
-                pointOptionEnd = PointOption.point(dims.width - edgeBorder, dims.height / 2);
-                break;
-            default:
-                throw new IllegalArgumentException("swipeScreen(): dir: '" + dir + "' NOT supported");
-        }
+        pointOptionEnd = switch (dir) {
+            case DOWN -> // center of footer
+                    PointOption.point(dims.width / 2, dims.height - edgeBorder);
+            case UP -> // center of header
+                    PointOption.point(dims.width / 2, edgeBorder);
+            case LEFT -> // center of left side
+                    PointOption.point(edgeBorder, dims.height / 2);
+            case RIGHT -> // center of right side
+                    PointOption.point(dims.width - edgeBorder, dims.height / 2);
+            default -> throw new IllegalArgumentException("swipeScreen(): dir: '" + dir + "' NOT supported");
+        };
 
         // execute swipe using TouchAction
         try {
@@ -75,7 +72,7 @@ public class Keyword {
         try {
             Thread.sleep(ANIMATION_TIME);
         } catch (InterruptedException e) {
-            // ignore
+            e.printStackTrace();
         }
     }
 }
