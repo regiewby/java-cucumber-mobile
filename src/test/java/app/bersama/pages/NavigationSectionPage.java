@@ -37,7 +37,7 @@ public class NavigationSectionPage {
     private WebElement button_home;
 
     public void tapNavigationAccount() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(),30);
         wait.until(ExpectedConditions.visibilityOf(button_account));
         button_account.click();
     }

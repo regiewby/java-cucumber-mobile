@@ -11,6 +11,7 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
 
@@ -18,7 +19,7 @@ public class LoginPage {
 
     public LoginPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 

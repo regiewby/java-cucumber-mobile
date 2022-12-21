@@ -22,10 +22,12 @@ public class DriverManager {
         }
 
         public AndroidDriver getDriver() {
+
             return driver.get();
         }
 
         public void setDriver(AndroidDriver androidDriver) {
+
             driver.set(androidDriver);
         }
 
