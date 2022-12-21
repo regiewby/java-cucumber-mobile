@@ -1,6 +1,7 @@
 package app.bersama.pages;
 
 import app.bersama.DriverManager;
+import app.bersama.Keyword;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
 
@@ -17,7 +19,7 @@ public class LoginPage {
 
     public LoginPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -41,26 +43,26 @@ public class LoginPage {
     private WebElement navLinkDaftar;
 
     public void tapNavLinkRegister(){
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(navLinkDaftar));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+        Keyword.waitUntilElementIsVisible(navLinkDaftar);
         navLinkDaftar.click();
     }
 
     public void modalLogin(String email, String password) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(txtEmail));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+        Keyword.waitUntilElementIsVisible(txtEmail);
         txtEmail.sendKeys(email);
 
-        wait.until(ExpectedConditions.visibilityOf(txtPassword));
+        Keyword.waitUntilElementIsVisible(txtPassword);
         txtPassword.sendKeys(password);
 
-        wait.until(ExpectedConditions.visibilityOf(btnLogin));
+        Keyword.waitUntilElementIsVisible(btnLogin);
         btnLogin.click();
     }
 
     public void assertLogin(){
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(assertLogin));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+        Keyword.waitUntilElementIsVisible(assertLogin);
         assertLogin.isDisplayed();
     }
 

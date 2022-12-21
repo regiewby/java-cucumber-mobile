@@ -1,6 +1,7 @@
 package app.bersama.pages;
 
 import app.bersama.DriverManager;
+import app.bersama.Keyword;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class NavigationSectionPage {
 
     public NavigationSectionPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -39,8 +40,8 @@ public class NavigationSectionPage {
     private WebElement button_home;
 
     public void tapNavigationAccount() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(button_account));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+        Keyword.waitUntilElementIsVisible(button_account);
         button_account.click();
     }
 }

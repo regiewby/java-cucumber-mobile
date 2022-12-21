@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class RegisterPage {
 
@@ -17,7 +18,7 @@ public class RegisterPage {
 
     public RegisterPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -43,28 +44,29 @@ public class RegisterPage {
     private WebElement btnRegister;
 
     public void validRegister (String fullName, String email, String password, String phoneNumber, String city, String address){
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(txtFullname));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+
+        Keyword.waitUntilElementIsVisible(txtFullname);
         txtFullname.sendKeys(fullName);
 
-        wait.until(ExpectedConditions.visibilityOf(txtEmail));
+        Keyword.waitUntilElementIsVisible(txtEmail);
         txtEmail.sendKeys(email);
 
-        wait.until(ExpectedConditions.visibilityOf(txtPassword));
+        Keyword.waitUntilElementIsVisible(txtPassword);
         txtPassword.sendKeys(password);
 
-        wait.until(ExpectedConditions.visibilityOf(txtPhoneNumber));
+        Keyword.waitUntilElementIsVisible(txtPhoneNumber);
         txtPhoneNumber.sendKeys(phoneNumber);
 
-        wait.until(ExpectedConditions.visibilityOf(txtCity));
+        Keyword.waitUntilElementIsVisible(txtCity);
         txtCity.sendKeys(city);
 
-        wait.until(ExpectedConditions.visibilityOf(txtAddress));
+        Keyword.waitUntilElementIsVisible(txtAddress);
         txtAddress.sendKeys(address);
 
         Keyword.swipeByElement(txtCity,txtFullname);
 
-        wait.until(ExpectedConditions.visibilityOf(btnRegister));
+        Keyword.waitUntilElementIsVisible(btnRegister);
         btnRegister.click();
     }
 }

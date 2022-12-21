@@ -1,6 +1,7 @@
 package app.bersama.pages;
 
 import app.bersama.DriverManager;
+import app.bersama.Keyword;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author regiewby on 16/12/22
@@ -21,7 +23,7 @@ public class MyAccountPage {
 
     public MyAccountPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
     //asa@gmail.com
@@ -30,8 +32,8 @@ public class MyAccountPage {
     private WebElement button_login;
 
     public void tapButtonLogin() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.visibilityOf(button_login));
+        WebDriverWait wait = new WebDriverWait(appiumDriver, 30);
+        Keyword.waitUntilElementIsVisible(button_login);
         button_login.click();
     }
 }
