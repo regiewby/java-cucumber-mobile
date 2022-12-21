@@ -37,6 +37,6 @@ public class MobileTestRunner extends AbstractTestNGCucumberTests {
 
     @AfterMethod(alwaysRun = true)
     public void tearDownDriver() {
-        DriverManager.getInstance().closeDriver();
+        DriverManager.getInstance().removeDriver();
     }
 }

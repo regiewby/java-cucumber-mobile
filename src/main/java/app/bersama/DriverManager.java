@@ -1,8 +1,6 @@
 package app.bersama;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebDriver;
 
 /**
  * @author regiewby on 16/12/22
@@ -30,7 +28,7 @@ public class DriverManager {
         driver.set(androidDriver);
     }
 
-    public void closeDriver() {
+    public void removeDriver() {
         driver.remove();
     }
 }

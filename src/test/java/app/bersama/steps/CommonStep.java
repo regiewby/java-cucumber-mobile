@@ -1,6 +1,8 @@
 package app.bersama.steps;
 
 import app.bersama.DriverManager;
+import app.bersama.Keyword;
+import app.bersama.enums.Direction;
 import app.bersama.pages.LoginPage;
 import app.bersama.pages.MyAccountPage;
 import app.bersama.pages.NavigationSectionPage;
@@ -24,6 +26,9 @@ public class CommonStep {
 
     @Given("user navigate to login page")
     public void user_navigate_to_login_page() {
+
+        Keyword.swipeScreen(Direction.UP);
+
         // click button account navigation
         NavigationSectionPage navigationSectionPage = new NavigationSectionPage(androidDriver);
         navigationSectionPage.tapNavigationAccount();

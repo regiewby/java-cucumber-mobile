@@ -17,9 +17,6 @@ import java.net.URL;
  */
 public class MobileFactory {
 
-
-    private AndroidDriver androidDriver;
-
     public AndroidDriver launchMobile(String platformType) throws MalformedURLException {
 
         DesiredCapabilities dc = new DesiredCapabilities();
@@ -33,6 +30,7 @@ public class MobileFactory {
             dc.setCapability(CapabilityType.PLATFORM_NAME, Platform.ANDROID.toString());
             dc.setCapability(MobileCapabilityType.APP, absPathApk);
             dc.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
+            dc.setCapability(MobileCapabilityType.NO_RESET, false);
 
         } else if (platformType.equalsIgnoreCase("IOS")) {
             dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
