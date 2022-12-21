@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author regiewby on 16/12/22
@@ -20,7 +21,7 @@ public class LoginPage {
 
     public LoginPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -34,7 +35,7 @@ public class LoginPage {
     private WebElement button_login;
 
     public void userLogin(String email, String password) {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), 30);
         wait.until(ExpectedConditions.visibilityOf(input_email));
         input_email.sendKeys(email);
         input_password.sendKeys(password);

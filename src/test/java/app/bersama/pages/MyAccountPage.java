@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author regiewby on 16/12/22
@@ -17,11 +17,11 @@ import java.time.Duration;
  */
 public class MyAccountPage {
 
-    private AppiumDriver appiumDriver;
+    private final AppiumDriver appiumDriver;
 
     public MyAccountPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -32,19 +32,19 @@ public class MyAccountPage {
     private WebElement profile_picture;
 
     public void tapButtonLogin() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), 30);
         wait.until(ExpectedConditions.visibilityOf(button_login));
         button_login.click();
     }
 
     public void verifyLogin() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), 30);
         wait.until(ExpectedConditions.visibilityOf(profile_picture));
         Assert.assertTrue(profile_picture.isDisplayed());
     }
 
     public boolean verifyLoginAndAssert() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), 30);
         wait.until(ExpectedConditions.visibilityOf(profile_picture));
         return profile_picture.isDisplayed();
     }

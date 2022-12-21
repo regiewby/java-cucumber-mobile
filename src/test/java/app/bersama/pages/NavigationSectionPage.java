@@ -21,7 +21,7 @@ public class NavigationSectionPage {
 
     public NavigationSectionPage(AppiumDriver driver) {
         this.appiumDriver = driver;
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         PageFactory.initElements(driver, this);
     }
 
@@ -38,7 +38,7 @@ public class NavigationSectionPage {
     private WebElement button_home;
 
     public void tapNavigationAccount() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getInstance().getDriver(), 30);
         wait.until(ExpectedConditions.visibilityOf(button_account));
         button_account.click();
     }
