@@ -2,7 +2,6 @@ package app.bersama;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,6 +34,8 @@ public class Keyword {
     }
 
     public static void swipeByElement(WebElement startElement, WebElement endElement) {
+
+        waitUntilElementIsVisible(startElement);
 
         int startX = startElement.getLocation().getX() + (startElement.getSize().getWidth() / 2);
         int startY = startElement.getLocation().getY() + (startElement.getSize().getHeight() / 2);

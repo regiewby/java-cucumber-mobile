@@ -41,7 +41,6 @@ public class  MyAccountPage {
     }
 
     public void verifyLogin(String expectedName, String expectedPhone, String expectedEmail) {
-        Keyword.waitUntilElementIsVisible(label_email);
         Keyword.pullToRefresh();
         Keyword.waitUntilElementIsVisible(label_email);
         Assert.assertEquals(label_name.getText(), expectedName);
