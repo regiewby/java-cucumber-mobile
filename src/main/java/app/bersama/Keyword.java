@@ -5,11 +5,15 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Collections;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
 
@@ -21,10 +25,70 @@ public class Keyword {
 
     private static final AppiumDriver driver = DriverManager.getInstance().getDriver();
 
+    public static void enterText(WebElement element, String value) {
+        waitUntilElementIsVisible(element);
+        element.clear();
+        element.sendKeys(value);
+    }
+
     public static void waitUntilElementIsVisible(WebElement element) {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    public static void waitUntilElementIsClickAble(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    private static void swipe(Point source, Point target) {
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(
+                Duration.ofMillis(0),
+                PointerInput.Origin.viewport(),
+                source.getX(),
+                source.getY()));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(
+                Duration.ofMillis(700),
+                PointerInput.Origin.viewport(),
+                target.getX(),
+                target.y));
+        driver.perform(Collections.singleton(swipe));
+    }
+
+    public static void swipe(Direction direction) {
+        int height;
+        int width;
+
+        height = driver.manage().window().getSize().getHeight();
+        width = driver.manage().window().getSize().getWidth();
+
+        int startX = width / 2, startY = 0, endX = width / 2, endY = 0;
+
+        if (direction.equals(Direction.UP)) {
+            startY = (int) (height * 0.2);
+            endY = (int) (height * 0.8);
+        } else if (direction.equals(Direction.DOWN)) {
+            startY = (int) (height * 0.8);
+            endY = (int) (height * 0.2);
+        }
+
+        Point start = new Point(startX, startY);
+        Point end = new Point(endX, endY);
+
+        swipe(end, start);
+    }
+
+    public static void dragAndDrop(WebElement sourceElement, WebElement targetElement) {
+        Point source = sourceElement.getLocation();
+        Point target = targetElement.getLocation();
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        swipe(source, target);
+    }
+
 
     public static void pullToRefresh() {
         int deviceWidth = driver.manage().window().getSize().getWidth();

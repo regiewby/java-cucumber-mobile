@@ -27,6 +27,9 @@ public class CommonStep {
     @Given("user navigate to login page")
     public void user_navigate_to_login_page() {
 
+        // test swipe
+        Keyword.swipe(Direction.UP);
+
         // click button account navigation
         NavigationSectionPage navigationSectionPage = new NavigationSectionPage(androidDriver);
         navigationSectionPage.tapNavigationAccount();
